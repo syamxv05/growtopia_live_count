@@ -13,5 +13,8 @@ jobs:
     - name: Setup Lua
       uses: leafo/gh-actions-lua@v8
 
+    - name: Install LuaSocket
+      run: luarocks install luasocket
+
     - name: Run live player count script
       run: lua live_player_count.lua
