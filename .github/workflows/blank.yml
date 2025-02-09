@@ -10,13 +10,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup Lua
-      uses: leafo/gh-actions-lua@v8
-
-    - name: Install dependencies
+    - name: Install Lua 5.1 and LuaRocks
       run: |
         sudo apt-get update
-        sudo apt-get install -y luarocks
+        sudo apt-get install -y lua5.1 luarocks
 
     - name: Install LuaSocket
       run: luarocks install luasocket --local
@@ -24,7 +21,12 @@ jobs:
     - name: Add LuaRocks local bin to PATH
       run: echo "LUAROCKS_BIN=$(luarocks path --lr-bin)" >> $GITHUB_ENV
 
+    - name: Set up LuaRocks environment variables
+      run: luarocks path >> $GITHUB_ENV
+
     - name: Run live player count script
       env:
-        PATH: ${{ env.LUAROCKS_BIN }}:$PATH
-      run: lua live_player_count.lua
+        PATH: ${{ env.LUAROCKS_BIN }}:${{ env.PATH }}
+        LUA_PATH: "${{ env.LUA_PATH }}"
+        LUA_CPATH: "${{ env.LUA_CPATH }}"
+      run: lua5.1 live_player_count.lua
