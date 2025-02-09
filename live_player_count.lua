@@ -2,7 +2,7 @@ local server = HttpClient.new()
 local oldCounter = 0
 local checkInterval = 10 -- Interval dalam detik
 server.url = "https://growtopiagame.com/detail"
-local link = "your_webhook_link" -- Gantilah dengan link webhook Anda
+local link = "https://discord.com/api/webhooks/1324656544570408980/b0LyD6EyZzpj395zUG9hE3GlaGCFdCbZBMk6Q9Vo-_d02Oq6lfj9dWOq1LjSf2yN5p1S" -- Gantilah dengan link webhook Anda
 local discordUserId = "your_discord_user_id" -- Gantilah dengan ID pengguna Discord Anda untuk tag selama BW
 
 function wh(msg)
