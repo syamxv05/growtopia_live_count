@@ -1,0 +1,17 @@
+name: Live Player Count
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Lua
+      uses: leafo/gh-actions-lua@v8
+
+    - name: Run live player count script
+      run: lua live_player_count.lua
