@@ -19,7 +19,10 @@ jobs:
         sudo apt-get install -y luarocks
 
     - name: Install LuaSocket
-      run: luarocks install luasocket
+      run: luarocks install luasocket --local
+
+    - name: Add LuaRocks local bin to PATH
+      run: echo "::add-path::$(luarocks path --lr-bin)"
 
     - name: Run live player count script
       run: lua live_player_count.lua
