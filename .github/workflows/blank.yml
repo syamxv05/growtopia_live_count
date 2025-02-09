@@ -13,6 +13,11 @@ jobs:
     - name: Setup Lua
       uses: leafo/gh-actions-lua@v8
 
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y luarocks
+
     - name: Install LuaSocket
       run: luarocks install luasocket
 
