@@ -22,7 +22,9 @@ jobs:
       run: luarocks install luasocket --local
 
     - name: Add LuaRocks local bin to PATH
-      run: echo "::add-path::$(luarocks path --lr-bin)"
+      run: echo "LUAROCKS_BIN=$(luarocks path --lr-bin)" >> $GITHUB_ENV
 
     - name: Run live player count script
+      env:
+        PATH: ${{ env.LUAROCKS_BIN }}:$PATH
       run: lua live_player_count.lua
